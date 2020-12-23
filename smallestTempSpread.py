@@ -1,12 +1,12 @@
-import re 
-
+numeric = '0123456789.'
 minDiff = float('inf')
 
 with open('w_data.dat') as file:
     for line in file.readlines()[6:36]: # read only lines 7-36
         cols = line.strip().split()
-        currMaxTemp = ''.join(re.findall(r'[\d.]+', cols[1])) # use regex to filter out * char
-        currMinTemp = ''.join(re.findall(r'[\d.]+', cols[2]))
+
+        currMaxTemp = ''.join([x for x in cols[1] if x in numeric]) 
+        currMinTemp = ''.join([x for x in cols[2] if x in numeric])
         currDiff = float(currMaxTemp) - float(currMinTemp)
 
         if (currDiff < minDiff):
